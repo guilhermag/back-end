@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Back-end contendo uma API para controle de usuários(CRUD) e interação com o banco Postgresql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Guilherme de Araujo Gabriel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
