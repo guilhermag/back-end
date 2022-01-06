@@ -1,5 +1,15 @@
-const http = require('http');
-const app = require('./app');
-const port = process.env.PORT || 3000;
-const server = http.createServer(app);
-server.listen(port);
+const express = require('express');
+const rotasCandidatos = require('./routes/routes');
+
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send('hello world!');
+});
+
+app.use('/api/v1/candidatos', rotasCandidatos);
+
+app.listen(port, () => console.log(`servidor rodando na porta ${port}`));
