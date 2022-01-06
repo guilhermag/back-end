@@ -48,13 +48,20 @@ const createCandidato = (req, res) => {
     });
 };
 
-const deleteStudent = (req, res) => {
+const deleteCandidato = (req, res) => {
     const email = req.params.email;
 
-    pool.query(queries.deleteStudent, [email], (error, results) => {
+    pool.query(queries.getCandidatoByEmail, [email], (error, results) => {
         const candidatoNaoEncontrado = !results.rows.length;
-        res.send('Candidato não existe no database')
-    })
+        if (candidatoNaoEncontrado) {
+            res.send('Candidato não existe no banco de dados.');
+        }
+
+        pool.query(queries.deleteCandidato, [email], (error, results) => {
+            if (error) throw error;
+            res.status(200).send("Candidato removido com sucesso.")
+        })
+    });
 };
 
 
@@ -62,5 +69,5 @@ module.exports = {
     getCandidatos,
     getCandidatoByEmail,
     createCandidato,
-    deleteStudent,
+    deleteCandidato,
 };
