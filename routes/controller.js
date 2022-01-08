@@ -41,13 +41,13 @@ const createCandidato = (req, res) => {
 
     pool.query(queries.checkEmailExists, [email], (error, results) => {
         if (results.rows.length) {
-            res.send("Email ja utilizado.");
+            throw new Error("Cadastro não efetuado, email já existe");
         }
         if (checkCandidatoVazio || checkCandidatoUndefined) {
-            res.send("Cadastro não efetuado, possui campo nulo.");
+            throw new Error("Cadastro não efetuado, possui campo nulo.");
         }
         if (idadeCalculada < 16) {
-            res.send("Cadastro não efetuado, idade menor que 16 anos.")
+            throw new Error("Cadastro não efetuado, idade menor que 16 anos.");
         }
 
         pool.query(queries.createCandidato,
