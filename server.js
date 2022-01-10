@@ -1,8 +1,6 @@
 const express = require('express');
 const rotasCandidatos = require('./routes/routes');
-const { Pool } = require('pg')
 
-const pool = require('./database');
 const cors = require("cors");
 
 const app = express();
